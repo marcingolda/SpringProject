@@ -73,14 +73,21 @@ public class StudentController {
     
     @RequestMapping(value="/edytuj/{id}")
     public ModelAndView edytuj(@PathVariable String id){
-        ModelMap map = new ModelMap();
-        map.put("student", studentList.get(Integer.parseInt(id)));
-        return new ModelAndView("student", map);
+    	ModelMap map = new ModelMap();
+    	if (studentList.containsKey(Integer.parseInt(id))){
+            map.put("student", studentList.get(Integer.parseInt(id)));
+            return new ModelAndView("student", map);
+    	} else {
+    		return new ModelAndView("error", map);
+    	}
+
     }
     
     @RequestMapping(value="/usun/{id}")
     public String usun(@PathVariable String id, HttpServletRequest request){
-        studentList.remove(Integer.parseInt(id));
+    	if (studentList.containsKey(Integer.parseInt(id))){
+    		studentList.remove(Integer.parseInt(id));
+    	}
         
         Iterator iter = studentList.keySet().iterator();
         List<StudentForm> newMap = new ArrayList<>();
