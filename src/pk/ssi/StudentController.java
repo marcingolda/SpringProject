@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -30,8 +31,14 @@ public class StudentController {
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public ModelAndView zapisz(StudentForm form, BindingResult errors, HttpServletRequest request, HttpServletResponse response){
-        if(form.getId() == -1){
+    public ModelAndView zapisz(@Valid StudentForm form, BindingResult errors, HttpServletRequest request, HttpServletResponse response){
+        if (errors.hasErrors()) {
+        	ModelMap map = new ModelMap();
+            map.put("student", form);
+            return new ModelAndView("student", map);
+        }
+        
+    	if(form.getId() == -1){
             form.setId(++id);
             studentList.put(id, form);
         } else {
