@@ -19,11 +19,11 @@
                     <td>${student.imie}</td>
                     <td>${student.nazwisko}</td>
                     <td>${student.uczelnia}</td>
-                    <td><a href="/SSISpring/student/edytuj/${student.id}">EDYTUJ</a></td>
-                    <td><a href="/SSISpring/student/usun/${student.id}">USUN</a></td>
+                    <td><a href="${pageContext.request.contextPath}/student/edytuj/${student.id}">EDYTUJ</a></td>
+                    <td><a href="${pageContext.request.contextPath}/student/usun/${student.id}">USUN</a></td>
                 </tr>
             </c:forEach>
         </table>
-        <a href="/SSISpring/student/nowy">Dodaj nowego studenta</a>
+        <a href="${pageContext.request.contextPath}/student/nowy">Dodaj nowego studenta</a>
     </body>
 </html>

@@ -7,7 +7,7 @@
         <title>Student</title>
     </head>
     <body>
-        <form:form commandName="student" method="post" action="/SSISpring/student">
+        <form:form commandName="student" method="post" action="${pageContext.request.contextPath}/student">
         <form:hidden path="id" id="id" />
         <table>
             <tr>
