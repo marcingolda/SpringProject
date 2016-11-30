@@ -13,17 +13,17 @@
             <tr>
                 <td><label>Imię</label></td>
                 <td><form:input path="imie" id="imie" />
-                <form:errors path="imie" cssclass="error" ></form:errors></td>
+                <form:errors path="imie" cssclass="error" /></td>
             </tr>
             <tr>
                 <td><label>Nazwisko</label></td>
                 <td><form:input path="nazwisko" id="nazwisko" />
-                <form:errors path="nazwisko" cssclass="error"></form:errors></td>
+                <form:errors path="nazwisko" cssclass="error"/></td>
             </tr>
             <tr>
                 <td><label>Uczelnia</label></td>
                 <td><form:input path="uczelnia" id="uczelnia" />
-                <form:errors path="uczelnia" cssclass="error"></form:errors></td>
+                <form:errors path="uczelnia" cssclass="error"/></td>
             </tr>
             <tr>
                 <td><input type="submit" name="zapisz" value="Zapisz"/></td>
