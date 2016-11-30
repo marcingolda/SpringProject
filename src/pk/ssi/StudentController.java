@@ -11,6 +11,8 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +33,10 @@ public class StudentController {
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public ModelAndView zapisz(@Valid StudentForm form, BindingResult errors, HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView zapisz(@ModelAttribute("student") StudentForm form, BindingResult errors, HttpServletRequest request, HttpServletResponse response){
+    	Validator validator = new StudentValidator();
+    	validator.validate(form, errors);
+    	
         if (errors.hasErrors()) {
         	ModelMap map = new ModelMap();
             map.put("student", form);

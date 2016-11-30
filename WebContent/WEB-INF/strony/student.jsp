@@ -13,7 +13,7 @@
             <tr>
                 <td><label>Imię</label></td>
                 <td><form:input path="imie" id="imie" />
-                <form:errors path="imie" cssclass="error"></form:errors></td>
+                <form:errors path="imie" cssclass="error" ></form:errors></td>
             </tr>
             <tr>
                 <td><label>Nazwisko</label></td>

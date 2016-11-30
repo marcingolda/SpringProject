@@ -1,19 +1,9 @@
 package pk.ssi;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class StudentForm {
 	
-	@NotNull
-	@Size(min=2, max=30)
     private String imie;
-	
-	@NotNull
-	@Size(min=2, max=30)
     private String nazwisko;
-	
-	@NotNull
-	@Size(min=2, max=30)
     private String uczelnia;
 	
     private int id = -1;
