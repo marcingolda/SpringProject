@@ -8,6 +8,7 @@
         <title>Lista studentów</title>
     </head>
     <body>
+    <spring:message code="jezyk"/> <a href="${pageContext.request.contextPath}/locale/pl">POLSKI</a> | <a href="${pageContext.request.contextPath}/locale/en">ENGLISH</a> 
         <h1>Lista studentów</h1>
         <table>
             <tr>
