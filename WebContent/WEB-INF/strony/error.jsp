@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    uuups. Cos poszlo nie tak. <br>
+   	<spring:message code="blad"/> <br>
+   	<a href="${pageContext.request.contextPath}/student"><spring:message code="wroc"/></a>
   </body>
 </html>
