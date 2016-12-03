@@ -99,6 +99,8 @@ public class StudentController {
     public String usun(@PathVariable String id, HttpServletRequest request){
     	if (studentList.containsKey(Integer.parseInt(id))){
     		studentList.remove(Integer.parseInt(id));
+    	} else {
+    		return "error";
     	}
         
         Iterator iter = studentList.keySet().iterator();
