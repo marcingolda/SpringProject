@@ -1,11 +1,21 @@
 package pk.ssi;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student")
 public class StudentForm {
 	
     private String imie;
     private String nazwisko;
     private String uczelnia;
 	
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id = -1;
 
     public StudentForm(){}

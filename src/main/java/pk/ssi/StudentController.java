@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -42,22 +41,9 @@ public class StudentController {
             map.put("student", form);
             return new ModelAndView("student", map);
         }
-        
-    	if(form.getId() == -1){
-            form.setId(++id);
-            studentList.put(id, form);
-        } else {
-            studentList.put(form.getId(), form);
-        }
-        
-        Iterator iter = studentList.keySet().iterator();
-        List<StudentForm> newMap = new ArrayList<>();
-        while (iter.hasNext()){
-            Object key = iter.next();
-            if (key != null){
-                newMap.add(studentList.get(key));
-            }
-        }
+    	
+    	new StudentDao().create(form);
+    	List<StudentForm> newMap = new StudentDao().getAll();
         
         ModelMap map = new ModelMap();
         map.put("studenci", newMap);
@@ -65,22 +51,12 @@ public class StudentController {
     }
     
     @RequestMapping(method=RequestMethod.GET)
-    public String wysweitl(HttpServletRequest request){
-        String widok = "";
-        
-        Iterator iter = studentList.keySet().iterator();
-        List<StudentForm> newMap = new ArrayList<>();
-        while (iter.hasNext()){
-            Object key = iter.next();
-            if (key != null){
-                newMap.add(studentList.get(key));
-            }
-        }
+    public String wysweitl(HttpServletRequest request){        
+        List<StudentForm> newMap = new StudentDao().getAll();
         
         request.setAttribute("studenci", newMap);
-        widok = "pokaz";
         
-        return widok;
+        return "pokaz";
     }
     
     @RequestMapping(value="/edytuj/{id}")
