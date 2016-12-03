@@ -9,7 +9,7 @@
     </head>
     <body>
     <spring:message code="jezyk"/> <a href="${pageContext.request.contextPath}/locale/pl">POLSKI</a> | <a href="${pageContext.request.contextPath}/locale/en">ENGLISH</a> 
-        <h1>Lista studentów</h1>
+        <h1><spring:message code="lista"/></h1>
         <table>
             <tr>
                 <th><spring:message code="student.imie"/></th>
