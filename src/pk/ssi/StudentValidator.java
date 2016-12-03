@@ -16,25 +16,25 @@ public class StudentValidator implements Validator {
 		StudentForm student = (StudentForm) target;
 		
 		if (student.getImie() == null || student.getImie().length() == 0){
-			errors.rejectValue("imie", "Imie nie moze byc puste");
+			errors.rejectValue("imie", "empty");
 		} else if (student.getImie().length() < 3){
-			errors.rejectValue("imie", "Imie jest za krotkie");
+			errors.rejectValue("imie", "short");
 		} else if (student.getImie().length() > 30){
-			errors.rejectValue("imie", "Imie jest za dlogie");
+			errors.rejectValue("imie", "long");
 		}
 		
 		if (student.getNazwisko() == null || student.getNazwisko().length() == 0){
-			errors.rejectValue("nazwisko", "Nazwisko nie moze byc puste");
+			errors.rejectValue("nazwisko", "empty");
 		} else if (student.getNazwisko().length() < 3){
-			errors.rejectValue("nazwisko", "Nazwisko jest za krotkie");
+			errors.rejectValue("nazwisko", "short");
 		} else if (student.getNazwisko().length() > 30){
-			errors.rejectValue("nazwisko", "Nazwisko jest za dlogie");
+			errors.rejectValue("nazwisko", "long");
 		}
 		
 		if (student.getUczelnia() == null || student.getUczelnia().length() == 0){
-			errors.rejectValue("uczelnia", "Uczelnia nie moze byc pusta");
+			errors.rejectValue("uczelnia", "empty");
 		} else if (student.getUczelnia().length() > 30){
-			errors.rejectValue("uczelnia", "Nazwa uczelni jest za dloga");
+			errors.rejectValue("uczelnia", "long");
 		}
 	}
 
