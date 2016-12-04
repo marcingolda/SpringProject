@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/student")
 @Controller
 public class StudentController {
-    Map<Integer, StudentForm> studentList = new HashMap<>();
     static int id = 0;
     
     @RequestMapping(value="/nowy", method = RequestMethod.GET)
@@ -51,7 +50,7 @@ public class StudentController {
     }
     
     @RequestMapping(method=RequestMethod.GET)
-    public String wysweitl(HttpServletRequest request){        
+    public String wyswietl(HttpServletRequest request){        
         List<StudentForm> newMap = new StudentDao().getAll();
         
         request.setAttribute("studenci", newMap);
@@ -62,32 +61,33 @@ public class StudentController {
     @RequestMapping(value="/edytuj/{id}")
     public ModelAndView edytuj(@PathVariable String id){
     	ModelMap map = new ModelMap();
-    	if (studentList.containsKey(Integer.parseInt(id))){
-            map.put("student", studentList.get(Integer.parseInt(id)));
-            return new ModelAndView("student", map);
-    	} else {
+    	StudentForm student;
+    	try{
+        	student = new StudentDao().get(Integer.parseInt(id));
+    	} catch(Exception e){
     		return new ModelAndView("error", map);
     	}
+        map.put("student", student);
+        return new ModelAndView("student", map);
 
     }
     
     @RequestMapping(value="/usun/{id}")
     public String usun(@PathVariable String id, HttpServletRequest request){
-    	if (studentList.containsKey(Integer.parseInt(id))){
-    		studentList.remove(Integer.parseInt(id));
+    	StudentForm student;
+    	try{
+        	student = new StudentDao().get(Integer.parseInt(id));
+    	} catch(Exception e){
+    		return "error";
+    	}
+
+    	if (student != null){
+    		new StudentDao().delete(Integer.parseInt(id));
     	} else {
     		return "error";
     	}
-        
-        Iterator iter = studentList.keySet().iterator();
-        List<StudentForm> newMap = new ArrayList<>();
-        while (iter.hasNext()){
-            Object key = iter.next();
-            if (key != null){
-                newMap.add(studentList.get(key));
-            }
-        }
-        
+    	List<StudentForm> newMap = new StudentDao().getAll();
+
         request.setAttribute("studenci", newMap);
         String widok = "pokaz";
         
