@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class StudentDao {
-	private EntityManagerFactory entityManagerFactory; 
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("derby"); 
 	private EntityManager entityManager;                             
 	private EntityTransaction entityTransaction;     
 	
@@ -25,7 +25,7 @@ public class StudentDao {
 		return student;
 	}
 	public List<StudentForm> getAll(){
-	    Query query = entityManager.createQuery("Select s from StudentForm s");
+	    Query query = entityManager.createQuery("from StudentForm");
 	    List<StudentForm> students = query.getResultList();
 	    close();
 	    return students;
@@ -43,13 +43,12 @@ public class StudentDao {
 	}
 	
 	public StudentDao(){
-		entityManagerFactory = Persistence.createEntityManagerFactory("derby");  
-		entityManager = entityManagerFactory.createEntityManager();                               
+		entityManager = entityManagerFactory.createEntityManager();        
+		entityTransaction = entityManager.getTransaction();
 	}
 	
 	private void close(){
 		entityManager.close();                                                                 
-		entityManagerFactory.close();
 	}
 
 }
